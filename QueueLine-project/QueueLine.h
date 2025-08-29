@@ -6,7 +6,7 @@ class QueueLine
 {
 	string prefix;
 	int TotalTickets=0;
-	int sevedClients=0;
+	int servedClients=0;
 	int waitClients=0;
 	int serveTime;
 	short prefixContactor=0;
@@ -26,8 +26,20 @@ public:
 	{
 		_generatePrefix(prefix);
 		TotalTickets++;
-		sevedClients++;
+		servedClients++;
 		waitClients++;
+	}
+	void printInfo()
+	{
+		cout << "Pay Bills Info\n";
+		cout << "\t\t\t_________________________________________________________\n";
+		cout << "\t\t\t\t\tQUEUE INFO\n";
+		cout << "\t\t\t_________________________________________________________\n";
+		cout << "\t\t\tprefix : "<<prefix;
+		cout << "\t\t\tTotalTickets : "<< TotalTickets<<endl;
+		cout << "\t\t\tservedClients : "<< servedClients << endl;
+		cout << "\t\t\twaitClients : "<< waitClients << endl;
+		cout << "\t\t\t____________________________\n";
 	}
 };
 
