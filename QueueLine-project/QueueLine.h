@@ -77,6 +77,10 @@ public:
 			cout << s.top() << " --> ";
 			s.pop();
 		}
+	}
+	void printAllTickets()
+	{
+		cout << "\t\t\tTickets:\n";
 
 	}
 };
