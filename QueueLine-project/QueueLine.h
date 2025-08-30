@@ -11,7 +11,7 @@ class QueueLine
 	int servedClients=0;
 	int waitClients=0;
 	int serveTime;
-	short prefixContactor=0;
+	short prefixContactor=1;
 	string _generatePrefix(string prefix)
 	{
 		prefix += to_string(prefixContactor);
@@ -28,16 +28,15 @@ public:
 	{
 		prefixTickets.push(_generatePrefix(prefix));
 		TotalTickets++;
-		servedClients++;
 		waitClients++;
 	}
 	void printInfo()
 	{
-		cout << "Pay Bills Info\n";
+		cout << "Pay Bills Info:\n";
 		cout << "\t\t\t_________________________________________________________\n";
-		cout << "\t\t\t\t\tQUEUE INFO\n";
+		cout << "\n\t\t\t\t\tQUEUE INFO\n";
 		cout << "\t\t\t_________________________________________________________\n";
-		cout << "\t\t\tprefix : "<<prefix;
+		cout << "\t\t\tprefix : "<<prefix << endl;
 		cout << "\t\t\tTotalTickets : "<< TotalTickets<<endl;
 		cout << "\t\t\tservedClients : "<< servedClients << endl;
 		cout << "\t\t\twaitClients : "<< waitClients << endl;
@@ -46,7 +45,7 @@ public:
 	void printTicketsRTL()
 	{
 		queue<string> temp = prefixTickets;
-		cout << "Tickets: ";
+		cout << "\n\t\t\tTickets: ";
 		while (!temp.empty()) {
 			cout << temp.front() << " <-- ";
 			temp.pop();
@@ -56,7 +55,7 @@ public:
 	void printTicketsLTR()
 	{
 		queue<string> temp = prefixTickets;
-		cout << "Tickets: ";
+		cout << "\n\t\t\tTickets: ";
 		while (!temp.empty()) {
 			cout << temp.back() << " --> ";
 			temp.pop();
