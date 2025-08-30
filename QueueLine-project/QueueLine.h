@@ -1,9 +1,11 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <queue>
 using namespace std;
 class QueueLine
 {
+	queue <string> prefixTickets;
 	string prefix;
 	int TotalTickets=0;
 	int servedClients=0;
@@ -24,7 +26,7 @@ public:
 	}
 	void issueTicket()
 	{
-		_generatePrefix(prefix);
+		prefixTickets.push(_generatePrefix(prefix));
 		TotalTickets++;
 		servedClients++;
 		waitClients++;
@@ -40,6 +42,26 @@ public:
 		cout << "\t\t\tservedClients : "<< servedClients << endl;
 		cout << "\t\t\twaitClients : "<< waitClients << endl;
 		cout << "\t\t\t____________________________\n";
+	}
+	void printTicketsRTL()
+	{
+		queue<string> temp = prefixTickets;
+		cout << "Tickets: ";
+		while (!temp.empty()) {
+			cout << temp.front() << " <-- ";
+			temp.pop();
+		}
+
+	}
+	void printTicketsLTR()
+	{
+		queue<string> temp = prefixTickets;
+		cout << "Tickets: ";
+		while (!temp.empty()) {
+			cout << temp.back() << " --> ";
+			temp.pop();
+		}
+
 	}
 };
 
