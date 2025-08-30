@@ -106,4 +106,18 @@ public:
             temp.pop();
         }
     }
+    void serveNextClient()
+    {
+        Ticket served = tickets.front();
+        tickets.pop();
+        servedClients++;
+        queue<Ticket> temp;
+        while (!tickets.empty()) {
+            Ticket tckt = tickets.front();
+            tickets.pop();
+            tckt.waitClients = max(0, tckt.waitClients - 1); 
+            temp.push(tckt);
+        }
+        tickets = temp;
+    }
 };
