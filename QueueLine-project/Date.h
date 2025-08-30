@@ -4,6 +4,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 class Date
@@ -206,7 +207,7 @@ public:
 		line += to_string(date.year);
 		return line;
 	}
-	static systemDate convertStringToDateOfLoginstruct(string line, string seperator = "/")
+	/*static systemDate convertStringToDateOfLoginstruct(string line, string seperator = "/")
 	{
 		systemDate date;
 		vector<string> vData = clsString::Split(line, seperator);
@@ -217,5 +218,5 @@ public:
 			date.year = stoi(vData[2]);
 		}
 		return date;
-	}
+	}*/
 };
