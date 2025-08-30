@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <queue>
+#include <stack>
 using namespace std;
 class QueueLine
 {
@@ -55,10 +56,17 @@ public:
 	void printTicketsLTR()
 	{
 		queue<string> temp = prefixTickets;
-		cout << "\n\t\t\tTickets: ";
-		while (!temp.empty()) {
-			cout << temp.back() << " --> ";
+		stack<string> s;
+
+		while (!temp.empty()) 
+		{
+			s.push(temp.front());
 			temp.pop();
+		}
+		cout << "\n\t\t\tTickets: ";
+		while (!s.empty()) {
+			cout << s.top() << " <-- ";
+			s.pop();
 		}
 
 	}
