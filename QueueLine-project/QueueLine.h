@@ -3,15 +3,23 @@
 #include <string>
 #include <queue>
 #include <stack>
+#include "Date.h"
 using namespace std;
 class QueueLine
 {
-	queue <string> prefixTickets;
+	struct stTicketsInfo
+	{
+		queue <string> prefixTickets;
+		int serveTime;
+		Date date;
+		Date time;
+		int waitClients = 0;
+
+	};
+	stTicketsInfo t;
 	string prefix;
 	int TotalTickets=0;
 	int servedClients=0;
-	int waitClients=0;
-	int serveTime;
 	short prefixContactor=1;
 	string _generatePrefix(string prefix)
 	{
@@ -23,13 +31,14 @@ public:
 	QueueLine(string prefix, int serveTime)
 	{
 		this->prefix = prefix;
-		this->serveTime = serveTime;
+		this->t.serveTime = serveTime;
 	}
 	void issueTicket()
 	{
-		prefixTickets.push(_generatePrefix(prefix));
+		
+		t.prefixTickets.push(_generatePrefix(prefix));
 		TotalTickets++;
-		waitClients++;
+		t.waitClients++;
 	}
 	void printInfo()
 	{
@@ -40,12 +49,12 @@ public:
 		cout << "\t\t\tprefix : "<<prefix << endl;
 		cout << "\t\t\tTotalTickets : "<< TotalTickets<<endl;
 		cout << "\t\t\tservedClients : "<< servedClients << endl;
-		cout << "\t\t\twaitClients : "<< waitClients << endl;
+		cout << "\t\t\twaitClients : "<< t.waitClients << endl;
 		cout << "\t\t\t____________________________\n";
 	}
 	void printTicketsRTL()
 	{
-		queue<string> temp = prefixTickets;
+		queue<string> temp = t.prefixTickets;
 		cout << "\n\t\t\tTickets: ";
 		while (!temp.empty()) {
 			cout << temp.front() << " <-- ";
@@ -55,7 +64,7 @@ public:
 	}
 	void printTicketsLTR()
 	{
-		queue<string> temp = prefixTickets;
+		queue<string> temp = t.prefixTickets;
 		stack<string> s;
 
 		while (!temp.empty()) 
@@ -65,7 +74,7 @@ public:
 		}
 		cout << "\n\t\t\tTickets: ";
 		while (!s.empty()) {
-			cout << s.top() << " <-- ";
+			cout << s.top() << " --> ";
 			s.pop();
 		}
 
